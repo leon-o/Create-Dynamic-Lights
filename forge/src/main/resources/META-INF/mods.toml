@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+[[mods]]
+modId="createdynlight"
+version="${version}"
+displayName="Create Dynamic Light"
+logoFile="icon.png"
+authors="Leon"
+description='''
+Allow Flywheel instancing optimization to be enabled when using iris.
+'''
+[[dependencies.createdynlight]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.createdynlight]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20,1.21)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.createdynlight]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5.0,)"
+    ordering="AFTER"
+    side="BOTH"
