@@ -1,17 +1,19 @@
-package top.leonx.dynlight.forge.lamb;
+package top.leonx.dynlight.forge;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import top.leonx.dynlight.CreateDynLight;
 import top.leonx.dynlight.config.forge.CreateDynLightAllConfigsImpl;
-import top.leonx.dynlight.forge.CreateDynLightAllPackets;
-import top.leonx.dynlight.forge.MovementBehavioursRegister;
+
+import java.util.ArrayList;
 
 @Mod(CreateDynLight.MOD_ID)
 public final class CreateDynLightForge {
@@ -36,7 +38,21 @@ public final class CreateDynLightForge {
     }
 
     private void commonSetup(FMLCommonSetupEvent evt){
-        evt.enqueueWork(MovementBehavioursRegister::RegisterAll);
+        evt.enqueueWork(()->{
+            var list = new ArrayList<Block>();
+            for (ResourceLocation blockRegistryName : ForgeRegistries.BLOCKS.getKeys()) {
+                Block block = ForgeRegistries.BLOCKS.getValue(blockRegistryName);
+                if (block != null) {
+                    @SuppressWarnings("deprecation")
+                    var lightEmission = block.defaultBlockState().getLightEmission();
+                    if (lightEmission > 0)
+                    {
+                        list.add(block);
+                    }
+                }
+            }
+            CreateDynLight.registerBehaviours(list);
+        });
     }
 
     private void modInit(FMLLoadCompleteEvent evt){

@@ -54,6 +54,29 @@ subprojects {
                 includeGroup("cc.tweaked")
             }
         }
+        maven {
+            url "https://mvn.devos.one/snapshots/"
+        }
+        maven {
+            url "https://jitpack.io/"
+        }
+        maven {
+            url "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+        }
+        maven {
+            url "https://maven.jamieswhiteshirt.com/libs-release"
+        }
+        maven {
+            // LambDynamicLights
+            url "https://maven.gegy.dev/releases/"
+        }
+
+        repositories {
+            maven {
+                name = "Terraformers"
+                url = "https://maven.terraformersmc.com/"
+            }
+        }
     }
 
     loom {

@@ -1,15 +1,18 @@
 package top.leonx.dynlight;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.AllMovementBehaviours;
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.content.contraptions.Contraption;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.slf4j.Logger;
 import top.leonx.dynlight.lamb.CreateDynLightSourceHolder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +27,13 @@ public class CreateDynLight {
         return new ResourceLocation(MOD_ID, path);
     }
 
-    public static void init(){
-
+    public static void registerBehaviours(Collection<Block> blocks){
+        CreateDynLight.LOGGER.info("Registering DynLightMovementBehaviours");
+        blocks.forEach(block -> {
+            var lightEmission = block.defaultBlockState().getLightEmission();
+            AllMovementBehaviours.registerBehaviour(block, new LightMovementBehaviour(lightEmission));
+        });
+        CreateDynLight.LOGGER.info("Registered LightMovementBehaviour for [" + String.join(", ", blocks.stream().map(Block::getDescriptionId).toList()) + "]");
     }
 
     public static void scheduleAddLightSourcesOfContraptionEntity(AbstractContraptionEntity contraptionEntity) {

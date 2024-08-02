@@ -8,9 +8,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import org.apache.commons.lang3.tuple.Pair;
-import top.leonx.dynlight.config.CDynLightClient;
-import top.leonx.dynlight.config.CDynLightCommon;
-import top.leonx.dynlight.config.CDynLightServer;
+import top.leonx.dynlight.config.CreateDynLightClient;
+import top.leonx.dynlight.config.CreateDynLightCommon;
+import top.leonx.dynlight.config.CreateDynLightServer;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -21,17 +21,17 @@ import java.util.function.Supplier;
 public class CreateDynLightAllConfigsImpl {
 
     public static final Map<ModConfig.Type, ConfigBase> CONFIGS = new EnumMap<>(ModConfig.Type.class);
-    private static CDynLightCommon common;
-    private static CDynLightClient client;
-    private static CDynLightServer server;
+    private static CreateDynLightCommon common;
+    private static CreateDynLightClient client;
+    private static CreateDynLightServer server;
 
-    public static CDynLightCommon common() {
+    public static CreateDynLightCommon common() {
         return common;
     }
-    public static CDynLightClient client() {
+    public static CreateDynLightClient client() {
         return client;
     }
-    public static CDynLightServer server() {
+    public static CreateDynLightServer server() {
         return server;
     }
 
@@ -53,9 +53,9 @@ public class CreateDynLightAllConfigsImpl {
     }
 
     public static void register(ModLoadingContext context) {
-        server = register(CDynLightServer::new, ModConfig.Type.SERVER);
-        client = register(CDynLightClient::new, ModConfig.Type.CLIENT);
-        common = register(CDynLightCommon::new, ModConfig.Type.COMMON);
+        server = register(CreateDynLightServer::new, ModConfig.Type.SERVER);
+        client = register(CreateDynLightClient::new, ModConfig.Type.CLIENT);
+        common = register(CreateDynLightCommon::new, ModConfig.Type.COMMON);
 
         for (Map.Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet())
             context.registerConfig(pair.getKey(), pair.getValue().specification);

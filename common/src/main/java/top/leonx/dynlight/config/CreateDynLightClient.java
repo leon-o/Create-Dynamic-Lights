@@ -2,7 +2,7 @@ package top.leonx.dynlight.config;
 
 import com.simibubi.create.foundation.config.ConfigBase;
 
-public class CDynLightClient extends ConfigBase {
+public class CreateDynLightClient extends ConfigBase {
 
     @Override
     public String getName() {
