@@ -8,7 +8,7 @@ displayName="Create Dynamic Light"
 logoFile="icon.png"
 authors="Leon"
 description='''
-Allow Flywheel instancing optimization to be enabled when using iris.
+Add dynamic lights to the Create mod.
 '''
 [[dependencies.createdynlight]]
     modId="forge"
@@ -28,5 +28,12 @@ Allow Flywheel instancing optimization to be enabled when using iris.
     modId="create"
     mandatory=true
     versionRange="[0.5.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.createdynlight]]
+    modId="dynamiclightsreforged"
+    mandatory=false
+    versionRange="[1.6.0,)"
     ordering="AFTER"
     side="BOTH"
