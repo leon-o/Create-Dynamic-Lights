@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.Entity;
-import top.leonx.dynlight.CreateDynLight;
+import top.leonx.dynlight.lamb.ContraptionEntityEventHandler;
 
 public class ClientModEventHandler {
     public static void register(){
@@ -16,17 +16,17 @@ public class ClientModEventHandler {
 
     private static void onClientEntityLoad(Entity entity, ClientLevel clientLevel) {
         if (entity instanceof AbstractContraptionEntity contraptionEntity) {
-            CreateDynLight.scheduleAddLightSourcesOfContraptionEntity(contraptionEntity);
+            ContraptionEntityEventHandler.onContraptionEntityJoin(contraptionEntity);
         }
     }
 
     private static void onClientEntityUnload(Entity entity, ClientLevel clientLevel) {
         if (entity instanceof AbstractContraptionEntity contraptionEntity) {
-            CreateDynLight.removeLightSourcesOfContraptionEntity(contraptionEntity);
+            ContraptionEntityEventHandler.onContraptionEntityLeave(contraptionEntity);
         }
     }
 
     private static void onTick(ClientLevel clientLevel) {
-        CreateDynLight.onTick();
+        ContraptionEntityEventHandler.onTick(clientLevel);
     }
 }

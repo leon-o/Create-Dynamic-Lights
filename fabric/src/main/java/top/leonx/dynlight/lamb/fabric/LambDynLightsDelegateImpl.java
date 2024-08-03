@@ -33,4 +33,12 @@ public class LambDynLightsDelegateImpl {
             LambDynLights.get().removeLightSource(forgeLightSource);
         }
     }
+
+    public static boolean getDynamicLightsModeEnabled() {
+        return LambDynLights.get().config.getDynamicLightsMode().isEnabled();
+    }
+
+    public static int getDynamicLightsModeDelay(){
+        return LambDynLights.get().config.getDynamicLightsMode().getDelay();
+    }
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.leonx.dynlight.CreateDynLight;
+import top.leonx.dynlight.lamb.ContraptionEntityEventHandler;
 
 @Mod.EventBusSubscriber(modid = CreateDynLight.MOD_ID)
 public class ClientModEventHandler {
@@ -18,7 +19,7 @@ public class ClientModEventHandler {
 
         var entity = event.getEntity();
         if (entity instanceof AbstractContraptionEntity contraptionEntity) {
-            CreateDynLight.scheduleAddLightSourcesOfContraptionEntity(contraptionEntity);
+            ContraptionEntityEventHandler.onContraptionEntityJoin(contraptionEntity);
         }
     }
 
@@ -30,14 +31,14 @@ public class ClientModEventHandler {
 
         var entity = event.getEntity();
         if (entity instanceof AbstractContraptionEntity contraptionEntity) {
-            CreateDynLight.removeLightSourcesOfContraptionEntity(contraptionEntity);
+            ContraptionEntityEventHandler.onContraptionEntityLeave(contraptionEntity);
         }
     }
 
     @SubscribeEvent
-    public static void onTick(TickEvent.ClientTickEvent event) {
+    public static void onTick(TickEvent.LevelTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
-            CreateDynLight.onTick();
+            ContraptionEntityEventHandler.onTick(event.level);
         }
     }
 }

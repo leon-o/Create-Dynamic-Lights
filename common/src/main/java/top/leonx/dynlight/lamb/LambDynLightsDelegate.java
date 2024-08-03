@@ -29,4 +29,14 @@ public class LambDynLightsDelegate {
     @ExpectPlatform
     public static void removeLightSource(CreateDynLightSource lightSource) {
     }
+
+    @ExpectPlatform
+    public static boolean getDynamicLightsModeEnabled() {
+        return false;
+    }
+
+    @ExpectPlatform
+    public static int getDynamicLightsModeDelay(){
+        return 0;
+    }
 }

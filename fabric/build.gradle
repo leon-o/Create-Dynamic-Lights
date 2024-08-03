@@ -35,6 +35,7 @@ dependencies {
 
     modImplementation ("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}")
     modImplementation ("dev.lambdaurora:lambdynamiclights:${lambdynamiclights_version}")
+    modCompileOnly("dev.lambdaurora:spruceui:${spruceui_version}")
     modImplementation ("com.terraformersmc:modmenu:${modmenu_version}")
     modImplementation ("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forgeconfigapiport_fabric_version}")
 

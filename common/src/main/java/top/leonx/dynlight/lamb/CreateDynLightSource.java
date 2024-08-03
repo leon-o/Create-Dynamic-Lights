@@ -13,6 +13,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import top.leonx.dynlight.config.CreateDynLightAllConfigs;
 
 public abstract class CreateDynLightSource {
     private final AbstractContraptionEntity contraptionEntity;
@@ -24,6 +25,8 @@ public abstract class CreateDynLightSource {
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final int id;
+
+    private long lambDynLightsLastUpdate;
 
     private ChunkPos chunkPosition;
 
@@ -83,7 +86,7 @@ public abstract class CreateDynLightSource {
 
 
     public int getLuminance() {
-        return luminance;
+        return (int) (luminance * CreateDynLightAllConfigs.client().luminanceMultiplier.get());
     }
 
 
@@ -106,6 +109,18 @@ public abstract class CreateDynLightSource {
     }
 
     public boolean shouldUpdateDynamicLight() {
+        if (!CreateDynLightAllConfigs.client().enableLambDynamicLight.get() || !LambDynLightsDelegate.getDynamicLightsModeEnabled())
+            return false;
+
+        int delay = CreateDynLightAllConfigs.client().getUpdateInterval();
+        if (delay > 0) {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime < this.lambDynLightsLastUpdate + delay) {
+                return false;
+            }
+
+            this.lambDynLightsLastUpdate = currentTime;
+        }
         return true;
     }
 

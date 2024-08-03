@@ -1,8 +1,10 @@
 package top.leonx.dynlight.config.forge;
 
 import com.simibubi.create.foundation.config.ConfigBase;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -11,6 +13,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import top.leonx.dynlight.config.CreateDynLightClient;
 import top.leonx.dynlight.config.CreateDynLightCommon;
 import top.leonx.dynlight.config.CreateDynLightServer;
+import top.leonx.dynlight.lamb.ContraptionEntityEventHandler;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -55,7 +58,7 @@ public class CreateDynLightAllConfigsImpl {
     public static void register(ModLoadingContext context) {
         server = register(CreateDynLightServer::new, ModConfig.Type.SERVER);
         client = register(CreateDynLightClient::new, ModConfig.Type.CLIENT);
-        common = register(CreateDynLightCommon::new, ModConfig.Type.COMMON);
+//        common = register(CreateDynLightCommon::new, ModConfig.Type.COMMON);
 
         for (Map.Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet())
             context.registerConfig(pair.getKey(), pair.getValue().specification);
