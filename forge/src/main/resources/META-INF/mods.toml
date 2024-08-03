@@ -10,6 +10,8 @@ authors="Leon"
 description='''
 Add dynamic lights to the Create mod.
 '''
+displayTest="IGNORE_ALL_VERSION"
+
 [[dependencies.createdynlight]]
     modId="forge"
     mandatory=true
@@ -36,4 +38,4 @@ Add dynamic lights to the Create mod.
     mandatory=false
     versionRange="[1.6.0,)"
     ordering="AFTER"
-    side="BOTH"
+    side="CLIENT"

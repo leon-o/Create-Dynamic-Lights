@@ -7,11 +7,11 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.Entity;
 import top.leonx.dynlight.lamb.ContraptionEntityEventHandler;
 
-public class ClientModEventHandler {
+public class LambModEventHandler {
     public static void register(){
-        ClientEntityEvents.ENTITY_LOAD.register(ClientModEventHandler::onClientEntityLoad);
-        ClientEntityEvents.ENTITY_UNLOAD.register(ClientModEventHandler::onClientEntityUnload);
-        ClientTickEvents.END_WORLD_TICK.register(ClientModEventHandler::onTick);
+        ClientEntityEvents.ENTITY_LOAD.register(LambModEventHandler::onClientEntityLoad);
+        ClientEntityEvents.ENTITY_UNLOAD.register(LambModEventHandler::onClientEntityUnload);
+        ClientTickEvents.END_WORLD_TICK.register(LambModEventHandler::onTick);
     }
 
     private static void onClientEntityLoad(Entity entity, ClientLevel clientLevel) {

@@ -4,14 +4,11 @@ import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import top.leonx.dynlight.CreateDynLight;
 import top.leonx.dynlight.lamb.ContraptionEntityEventHandler;
 
-@Mod.EventBusSubscriber(modid = CreateDynLight.MOD_ID)
-public class ClientModEventHandler {
-    @SubscribeEvent
+
+public class LambModEventHandler {
+
     public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
         if (!event.getLevel().isClientSide()) {
             return;
@@ -23,7 +20,7 @@ public class ClientModEventHandler {
         }
     }
 
-    @SubscribeEvent
+
     public static void onEntityLeaveWorld(EntityLeaveLevelEvent event) {
         if (!event.getLevel().isClientSide()) {
             return;
@@ -35,7 +32,7 @@ public class ClientModEventHandler {
         }
     }
 
-    @SubscribeEvent
+
     public static void onTick(TickEvent.LevelTickEvent event) {
         if (!event.level.isClientSide()) {
             return;

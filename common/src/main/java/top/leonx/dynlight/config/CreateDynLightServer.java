@@ -8,7 +8,7 @@ public class CreateDynLightServer extends ConfigBase {
     public String getName() {
         return "dynamic light server";
     }
-    public final ConfigBool enableLightBlock = b(true, "enableLightBlock", Comments.enableLightBlock);
+    public final ConfigBool enableLightBlock = b(false, "enableLightBlock", Comments.enableLightBlock);
 
     public static class Comments {
 
