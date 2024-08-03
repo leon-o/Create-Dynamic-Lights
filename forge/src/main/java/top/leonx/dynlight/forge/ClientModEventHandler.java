@@ -37,6 +37,9 @@ public class ClientModEventHandler {
 
     @SubscribeEvent
     public static void onTick(TickEvent.LevelTickEvent event) {
+        if (!event.level.isClientSide()) {
+            return;
+        }
         if (event.phase == TickEvent.Phase.END) {
             ContraptionEntityEventHandler.onTick(event.level);
         }
