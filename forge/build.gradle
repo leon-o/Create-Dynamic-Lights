@@ -44,9 +44,9 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
     modImplementation ("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    modImplementation "curse.maven:dynamiclights-reforged-551736:${dynamiclights_curseforge_id}"
     modImplementation ("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_forge_version}")
     modImplementation ("com.tterrag.registrate:Registrate:${registrate_version}")
+    modImplementation "curse.maven:dynamiclights-reforged-551736:${dynamiclights_curseforge_id}"
 
     forgeRuntimeLibrary ('org.anarres:jcpp:1.4.14')
     modLocalRuntime ("org.embeddedt:embeddium-${minecraft_version}:${embeddium_version}+mc${minecraft_version}")
