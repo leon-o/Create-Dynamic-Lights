@@ -20,6 +20,5 @@ public final class CreateDynLightFabric implements ModInitializer {
             }
         }
         CreateDynLight.registerBehaviours(list);
-        ModEventHandler.register();
     }
 }

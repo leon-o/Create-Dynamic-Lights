@@ -7,11 +7,11 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.Entity;
 import top.leonx.dynlight.CreateDynLight;
 
-public class ModEventHandler {
+public class ClientModEventHandler {
     public static void register(){
-        ClientEntityEvents.ENTITY_LOAD.register(ModEventHandler::onClientEntityLoad);
-        ClientEntityEvents.ENTITY_UNLOAD.register(ModEventHandler::onClientEntityUnload);
-        ClientTickEvents.END_WORLD_TICK.register(ModEventHandler::onTick);
+        ClientEntityEvents.ENTITY_LOAD.register(ClientModEventHandler::onClientEntityLoad);
+        ClientEntityEvents.ENTITY_UNLOAD.register(ClientModEventHandler::onClientEntityUnload);
+        ClientTickEvents.END_WORLD_TICK.register(ClientModEventHandler::onTick);
     }
 
     private static void onClientEntityLoad(Entity entity, ClientLevel clientLevel) {

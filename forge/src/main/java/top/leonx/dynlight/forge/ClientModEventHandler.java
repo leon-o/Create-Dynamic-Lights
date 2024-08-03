@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import top.leonx.dynlight.CreateDynLight;
 
 @Mod.EventBusSubscriber(modid = CreateDynLight.MOD_ID)
-public class ModEventHandler {
+public class ClientModEventHandler {
     @SubscribeEvent
     public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
         if (!event.getLevel().isClientSide()) {
