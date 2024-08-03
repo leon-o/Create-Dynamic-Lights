@@ -39,48 +39,45 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
       - name: Build
         run: ./gradlew clean build
-
-#      - name: Publish Fabric
-#        uses: Kir-Antipov/mc-publish@v3.3
-#        with:
-#          curseforge-id: 659897
-#          curseforge-token: "${{secrets.CURSEFORGE_TOKEN}}"
-#
-#          modrinth-id: iris-flw-compat
-#          modrinth-token: "${{secrets.MODRINTH_TOKEN}}"
-#
-#          github-token: "${{secrets.PUBLISH_TOKEN}}"
-#
-#          name: Fabric 1.20.1-1.1.0 for Iris 1.7.0+
-#          changelog-file: CHANGELOG.md
-#
-#          java: "${{env.JAVA_VERSION}}"
-#          files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
-#
-#          dependencies: |
-#            IrisShader@1.7.0(required){modrinth:iris}{curseforge:455508}
-#            CreateFabric(optional){modrithn:create-fabric}{curseforge:624165}
-#
-#          fail-mode: warn
-
 
       - name: Publish Forge
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-#          curseforge-id: 659897
-#          curseforge-token: "${{secrets.CURSEFORGE_TOKEN}}"
+          curseforge-id: "${{vars.CURSEFORGE_ID}}"
+          curseforge-token: "${{secrets.CURSEFORGE_TOKEN}}"
 
-#          modrinth-id: iris-flw-compat
-#          modrinth-token: "${{secrets.MODRINTH_TOKEN}}"
+          modrinth-id: "${{vars.MODRINTH_ID}}"
+          modrinth-token: "${{secrets.MODRINTH_TOKEN}}"
 
           github-token: "${{secrets.PUBLISH_TOKEN}}"
 
-#          name: Forge 1.20.1-1.1.0
           changelog-file: CHANGELOG.md
 
           java: "${{env.JAVA_VERSION}}"
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+
+          fail-mode: warn
+
+
+      - name: Publish Fabric
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-id: "${{vars.CURSEFORGE_ID}}"
+          curseforge-token: "${{secrets.CURSEFORGE_TOKEN}}"
+
+          modrinth-id: "${{vars.MODRINTH_ID}}"
+          modrinth-token: "${{secrets.MODRINTH_TOKEN}}"
+
+          github-token: "${{secrets.PUBLISH_TOKEN}}"
+
+          changelog-file: CHANGELOG.md
+
+          java: "${{env.JAVA_VERSION}}"
+          files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
 
           fail-mode: warn
