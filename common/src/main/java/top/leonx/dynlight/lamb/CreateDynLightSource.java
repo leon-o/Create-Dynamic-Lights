@@ -76,7 +76,7 @@ public abstract class CreateDynLightSource {
 
 
     public Level getDynamicLightWorld() {
-        return contraptionEntity.level();
+        return contraptionEntity.level;
     }
 
 
@@ -94,13 +94,13 @@ public abstract class CreateDynLightSource {
     }
 
     public void syncPositionAndLuminance() {
-        if (contraptionEntity.level() == Minecraft.getInstance().level) {
+        if (contraptionEntity.level == Minecraft.getInstance().level) {
             var newPosition = contraptionEntity.toGlobalVector(VecHelper.getCenterOf(localPos), 1);
             setPosition(newPosition);
 
             var blockInfo = contraptionEntity.getContraption().getBlocks().get(localPos);
             if (blockInfo != null) {
-                var newLuminance = blockInfo.state().getLightEmission();
+                var newLuminance = blockInfo.state.getLightEmission();
                 if (newLuminance != luminance) {
                     luminance = newLuminance;
                 }
@@ -181,7 +181,7 @@ public abstract class CreateDynLightSource {
 
 
     public void lambdynlights$scheduleTrackedChunksRebuild(@NotNull LevelRenderer renderer) {
-        if (this.contraptionEntity.level() == Minecraft.getInstance().level)
+        if (this.contraptionEntity.level == Minecraft.getInstance().level)
             for (long pos : this.lambdynlights$trackedLitChunkPos) {
                 LambDynLightsDelegate.scheduleChunkRebuild(renderer, pos);
             }

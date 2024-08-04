@@ -36,8 +36,8 @@ public class ContraptionEntityEventHandler {
     private static void addLightSourcesOfContraption(Contraption contraption) {
         var blocks = contraption.getBlocks();
         blocks.forEach((pos, blockInfo) -> {
-            if (blockInfo.state().getLightEmission() > 0) {
-                CreateDynLightSourceHolder.INSTANCE.getOrCreate(contraption.entity, blockInfo.pos(), blockInfo.state().getLightEmission());
+            if (blockInfo.state.getLightEmission() > 0) {
+                CreateDynLightSourceHolder.INSTANCE.getOrCreate(contraption.entity, blockInfo.pos, blockInfo.state.getLightEmission());
             }
         });
     }
