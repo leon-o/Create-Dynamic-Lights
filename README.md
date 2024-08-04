@@ -31,7 +31,7 @@ Add dynamic lights to the Create mod.
 
 ## Known Issues
 1. On Fabric, if the mod is installed only on the client side, the client will crash when you modify and save the server configuration.
-   - This issue is caused by the Porting Lib. For servers, I recommend installing the mod even if you don't want to use the Light Block effect. This can prevent client crashes and exception logs on the server side.
+   - For servers, I recommend installing the mod even if you don't want to use the Light Block effect. This can prevent client crashes and exception logs on the server side.
 
 
 ## Preview
