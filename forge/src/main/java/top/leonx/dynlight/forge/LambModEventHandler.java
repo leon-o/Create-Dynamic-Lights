@@ -1,6 +1,8 @@
 package top.leonx.dynlight.forge;
 
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
@@ -33,12 +35,9 @@ public class LambModEventHandler {
     }
 
 
-    public static void onTick(TickEvent.LevelTickEvent event) {
-        if (!event.level.isClientSide()) {
-            return;
-        }
+    public static void onTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
-            ContraptionEntityEventHandler.onTick(event.level);
+            ContraptionEntityEventHandler.onTick(Minecraft.getInstance().level);
         }
     }
 }
