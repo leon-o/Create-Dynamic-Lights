@@ -89,7 +89,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build
-        run: ./gradlew clean build
+        run: ./gradlew clean build -Pmod_version=${{inputs.mod_version}}
 
       - name: Publish Fabric GitHub Release
         if: ${{ inputs.publish_fabric == true && inputs.publish_github_release == true }}
