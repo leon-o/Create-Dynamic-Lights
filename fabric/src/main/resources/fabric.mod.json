@@ -21,9 +21,7 @@
       "top.leonx.dynlight.fabric.client.CreateDynLightFabricClient"
     ]
   },
-  "mixins": [
-    "createdynlight.mixins.json"
-  ],
+  "mixins": [],
   "depends": {
     "fabricloader": ">=0.14.0",
     "minecraft": "~1.19.2",

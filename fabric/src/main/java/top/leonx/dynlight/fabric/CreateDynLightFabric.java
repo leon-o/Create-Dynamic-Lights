@@ -12,13 +12,6 @@ public final class CreateDynLightFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         CreateDynLightAllConfigsImpl.register();
-        var list = new ArrayList<Block>();
-        for (var block : Registry.BLOCK) {
-            var defaultBlockState = block.defaultBlockState();
-            if (defaultBlockState.getLightEmission() > 0) {
-                list.add(block);
-            }
-        }
-        CreateDynLight.registerBehaviours(list);
+        CreateDynLight.registerGlobalBehaviourProvider();
     }
 }

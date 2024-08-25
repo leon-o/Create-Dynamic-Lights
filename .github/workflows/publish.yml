@@ -14,12 +14,21 @@ on:
         description: 'Minecraft Version'
         required: true
         type: 'string'
-        default: '1.19.2'
+        default: '1.20.1'
       mod_version:
         description: 'Mod Version'
         required: true
         type: 'string'
         default: '1.0.0'
+      version_type:
+        description: 'Version Type'
+        required: true
+        type: 'choice'
+        options:
+          - 'alpha'
+          - 'beta'
+          - 'release'
+        default: 'beta'
       publish_forge:
         description: 'Publish Forge'
         required: true
@@ -48,6 +57,7 @@ on:
 
 env:
   JAVA_VERSION: 17
+  VERSION_TITLE: "${{inputs.mc_version}}+${{inputs.mod_version}}-${{inputs.version_type}}"
 
 permissions:
   contents: write
@@ -79,7 +89,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build
-        run: ./gradlew clean build
+        run: ./gradlew clean build -Pmod_version=${{inputs.mod_version}}
 
       - name: Publish Fabric GitHub Release
         if: ${{ inputs.publish_fabric == true && inputs.publish_github_release == true }}
@@ -87,9 +97,11 @@ jobs:
         with:
           github-token: "${{secrets.PUBLISH_TOKEN}}"
 
-          name: "Fabric ${{inputs.mc_version}}-${{inputs.mod_version}}"
+          name: "Fabric ${{ENV.VERSION_TITLE}}"
           changelog-file: CHANGELOG.md
           files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+          version-type: ${{inputs.version_type}}
+          version: "fabric-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -100,9 +112,11 @@ jobs:
           curseforge-id: "${{vars.CURSEFORGE_ID}}"
           curseforge-token: "${{secrets.CURSEFORGE_TOKEN}}"
 
-          name: "Fabric ${{inputs.mc_version}}-${{inputs.mod_version}}"
+          name: "Fabric ${{ENV.VERSION_TITLE}}"
           changelog-file: CHANGELOG.md
           files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+          version-type: ${{inputs.version_type}}
+          version: "fabric-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -113,9 +127,11 @@ jobs:
           modrinth-id: "${{vars.MODRINTH_ID}}"
           modrinth-token: "${{secrets.MODRINTH_TOKEN}}"
 
-          name: "Fabric ${{inputs.mc_version}}-${{inputs.mod_version}}"
+          name: "Fabric ${{ENV.VERSION_TITLE}}"
           changelog-file: CHANGELOG.md
           files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+          version-type: ${{inputs.version_type}}
+          version: "fabric-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -125,9 +141,11 @@ jobs:
         with:
           github-token: "${{secrets.PUBLISH_TOKEN}}"
 
-          name: "Forge ${{inputs.mc_version}}-${{inputs.mod_version}}"
+          name: "Forge ${{ENV.VERSION_TITLE}}"
           changelog-file: CHANGELOG.md
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+          version-type: ${{inputs.version_type}}
+          version: "forge-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -138,9 +156,11 @@ jobs:
           curseforge-id: "${{vars.CURSEFORGE_ID}}"
           curseforge-token: "${{secrets.CURSEFORGE_TOKEN}}"
 
-          name: "Forge ${{inputs.mc_version}}-${{inputs.mod_version}}"
+          name: "Forge ${{ENV.VERSION_TITLE}}"
           changelog-file: CHANGELOG.md
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+          version-type: ${{inputs.version_type}}
+          version: "forge-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -152,8 +172,10 @@ jobs:
           modrinth-id: "${{vars.MODRINTH_ID}}"
           modrinth-token: "${{secrets.MODRINTH_TOKEN}}"
 
-          name: "Forge ${{inputs.mc_version}}-${{inputs.mod_version}}"
+          name: "Forge ${{ENV.VERSION_TITLE}}"
           changelog-file: CHANGELOG.md
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
+          version-type: ${{inputs.version_type}}
+          version: "forge-${{inputs.mod_version}}"
 
           fail-mode: warn

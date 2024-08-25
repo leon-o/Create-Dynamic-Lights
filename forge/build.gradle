@@ -3,9 +3,8 @@ plugins {
 }
 
 loom {
-    System.out.printf("xxxxxxx${projectDir}")
     forge {
-        mixinConfig "createdynlight.mixins.json"
+//        mixinConfig "createdynlight.mixins.json"
     }
 
     runs {
@@ -53,6 +52,8 @@ dependencies {
     modLocalRuntime ("maven.modrinth:oculus:${oculus_version}")
     modLocalRuntime ("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
 
+//    modLocalRuntime("maven.modrinth:create-contraption-terminals:1.20.1-1.0.0")
+//    modLocalRuntime("maven.modrinth:toms-storage:1.20-1.6.8")
     //modLocalRuntime ("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim")
 }
 

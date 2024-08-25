@@ -17,6 +17,7 @@ public class CreateDynLight {
         return new ResourceLocation(MOD_ID, path);
     }
 
+    @Deprecated
     public static void registerBehaviours(Collection<Block> blocks){
         CreateDynLight.LOGGER.info("Registering DynLightMovementBehaviours");
         blocks.forEach(block -> {
@@ -24,5 +25,11 @@ public class CreateDynLight {
             AllMovementBehaviours.registerBehaviour(block, new LightMovementBehaviour(lightEmission));
         });
         CreateDynLight.LOGGER.info("Registered LightMovementBehaviour for [" + String.join(", ", blocks.stream().map(Block::getDescriptionId).toList()) + "]");
+    }
+
+    public static void registerGlobalBehaviourProvider(){
+        var provider = new LightBehaviourProvider();
+        AllMovementBehaviours.registerBehaviourProvider(provider);
+        CreateDynLight.LOGGER.info("Registered LightBehaviourProvider");
     }
 }

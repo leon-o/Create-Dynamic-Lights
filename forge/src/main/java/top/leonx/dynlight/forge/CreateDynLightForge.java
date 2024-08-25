@@ -15,6 +15,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkConstants;
 import net.minecraftforge.registries.ForgeRegistries;
 import top.leonx.dynlight.CreateDynLight;
+import top.leonx.dynlight.config.CreateDynLightAllConfigs;
+import top.leonx.dynlight.config.CreateDynLightServer;
 import top.leonx.dynlight.config.forge.CreateDynLightAllConfigsImpl;
 
 import java.util.ArrayList;
@@ -50,21 +52,7 @@ public final class CreateDynLightForge {
     }
 
     private void commonSetup(FMLCommonSetupEvent evt){
-        evt.enqueueWork(()->{
-            var list = new ArrayList<Block>();
-            for (ResourceLocation blockRegistryName : ForgeRegistries.BLOCKS.getKeys()) {
-                Block block = ForgeRegistries.BLOCKS.getValue(blockRegistryName);
-                if (block != null) {
-                    @SuppressWarnings("deprecation")
-                    var lightEmission = block.defaultBlockState().getLightEmission();
-                    if (lightEmission > 0)
-                    {
-                        list.add(block);
-                    }
-                }
-            }
-            CreateDynLight.registerBehaviours(list);
-        });
+        evt.enqueueWork(CreateDynLight::registerGlobalBehaviourProvider);
     }
 
     private void modInit(FMLLoadCompleteEvent evt){
