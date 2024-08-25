@@ -101,6 +101,7 @@ jobs:
           changelog-file: CHANGELOG.md
           files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
           version-type: ${{inputs.version_type}}
+          version: "fabric-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -115,6 +116,7 @@ jobs:
           changelog-file: CHANGELOG.md
           files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
           version-type: ${{inputs.version_type}}
+          version: "fabric-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -129,6 +131,7 @@ jobs:
           changelog-file: CHANGELOG.md
           files: fabric/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
           version-type: ${{inputs.version_type}}
+          version: "fabric-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -142,6 +145,7 @@ jobs:
           changelog-file: CHANGELOG.md
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
           version-type: ${{inputs.version_type}}
+          version: "forge-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -156,6 +160,7 @@ jobs:
           changelog-file: CHANGELOG.md
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
           version-type: ${{inputs.version_type}}
+          version: "forge-${{inputs.mod_version}}"
 
           fail-mode: warn
 
@@ -171,5 +176,6 @@ jobs:
           changelog-file: CHANGELOG.md
           files: forge/build/libs/!(*-dev|*-sources|*-javadoc|*-shadow).jar
           version-type: ${{inputs.version_type}}
+          version: "forge-${{inputs.mod_version}}"
 
           fail-mode: warn
