@@ -4,7 +4,6 @@ import com.simibubi.create.AllMovementBehaviours;
 import com.simibubi.create.content.contraptions.behaviour.MovementBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
-import top.leonx.dynlight.config.CreateDynLightAllConfigs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +20,9 @@ public class LightBehaviourProvider implements AllMovementBehaviours.BehaviourPr
 
     @Override
     public @Nullable MovementBehaviour getBehaviour(BlockState blockState) {
-        var lowerLimit = CreateDynLightAllConfigs.server().lightBlockEmissionLowerLimit.get();
         int lightEmission = blockState.getLightEmission();
-        if (lightEmission >= lowerLimit) {
-            var index = Math.max(Math.min(15, lightEmission), 1) - 1;
-            return lightMovementBehaviours.get(index);
-        }
-        return null;
+        if (lightEmission <= 0) return null;
+        var index = Math.min(15, lightEmission) - 1;
+        return lightMovementBehaviours.get(index);
     }
 }
