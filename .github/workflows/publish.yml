@@ -14,7 +14,7 @@ on:
         description: 'Minecraft Version'
         required: true
         type: 'string'
-        default: '1.20.1'
+        default: '1.19.2'
       mod_version:
         description: 'Mod Version'
         required: true
