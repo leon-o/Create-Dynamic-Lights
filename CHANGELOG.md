@@ -1,2 +1,2 @@
-## 1.0.1
-- Fix issue [#4](https://github.com/leon-o/Create-Dynamic-Lights/issues/4): Incompatible with "Create Contraption Terminals"
+## 1.0.2
+- Fix issue [#6](https://github.com/leon-o/Create-Dynamic-Lights/issues/6): Crash in CreateDynLightSourceHolder removeAll.
