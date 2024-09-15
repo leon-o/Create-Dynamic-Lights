@@ -24,7 +24,7 @@ public class CreateDynLight {
             var lightEmission = block.defaultBlockState().getLightEmission();
             AllMovementBehaviours.registerBehaviour(block, new LightMovementBehaviour(lightEmission));
         });
-        CreateDynLight.LOGGER.info("Registered LightMovementBehaviour for [" + String.join(", ", blocks.stream().map(Block::getDescriptionId).toList()) + "]");
+        CreateDynLight.LOGGER.info("Registered LightMovementBehaviour for [{}]", String.join(", ", blocks.stream().map(Block::getDescriptionId).toList()));
     }
 
     public static void registerGlobalBehaviourProvider(){

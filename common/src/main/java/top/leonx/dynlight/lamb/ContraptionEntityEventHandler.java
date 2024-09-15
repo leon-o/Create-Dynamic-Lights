@@ -2,7 +2,6 @@ package top.leonx.dynlight.lamb;
 
 import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.content.contraptions.Contraption;
-import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.level.Level;
 import top.leonx.dynlight.config.CreateDynLightAllConfigs;
 

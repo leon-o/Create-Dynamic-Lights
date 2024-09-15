@@ -1,6 +1,5 @@
 package top.leonx.dynlight.lamb;
 
-import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import net.minecraft.client.renderer.LevelRenderer;
