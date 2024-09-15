@@ -31,6 +31,7 @@ public class CreateDynLightSourceHolder {
         return lightSource;
     }
 
+    @SuppressWarnings("unused")
     public void remove(int entityId, BlockPos blockPos) {
         lightSourcesLock.writeLock().lock();
         var lightSource = lightSources.remove(new LightSourceKey(entityId, blockPos));
@@ -41,6 +42,9 @@ public class CreateDynLightSourceHolder {
     }
 
     public void removeAll(AbstractContraptionEntity contraptionEntity) {
+        var contraption = contraptionEntity.getContraption();
+        if (contraption == null)
+            return;
         lightSourcesLock.writeLock().lock();
         for (BlockPos blockPos : contraptionEntity.getContraption().getBlocks().keySet()) {
             var lightSource = lightSources.remove(new LightSourceKey(contraptionEntity.getId(), blockPos));
@@ -55,6 +59,7 @@ public class CreateDynLightSourceHolder {
         return get(new LightSourceKey(entityId, blockPos));
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public CreateDynLightSource getOrCreate(AbstractContraptionEntity entity, BlockPos blockPos, int luminance) {
         return get(entity.getId(), blockPos).orElseGet(() -> create(entity, blockPos, luminance));
     }

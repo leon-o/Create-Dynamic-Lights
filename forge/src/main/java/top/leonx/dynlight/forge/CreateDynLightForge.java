@@ -1,10 +1,7 @@
 package top.leonx.dynlight.forge;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -12,14 +9,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.network.NetworkConstants;
-import net.minecraftforge.registries.ForgeRegistries;
 import top.leonx.dynlight.CreateDynLight;
-import top.leonx.dynlight.config.CreateDynLightAllConfigs;
-import top.leonx.dynlight.config.CreateDynLightServer;
 import top.leonx.dynlight.config.forge.CreateDynLightAllConfigsImpl;
-
-import java.util.ArrayList;
 
 @Mod(CreateDynLight.MOD_ID)
 public final class CreateDynLightForge {
