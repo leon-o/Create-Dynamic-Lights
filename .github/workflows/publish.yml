@@ -60,16 +60,17 @@ jobs:
       - name: Check Environment Variables
         run: env
 
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          submodules: true
+          fetch-depth: 0
+          fetch-tags: true
 
-      - name: Setup Java
-        uses: actions/setup-java@v2
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
         with:
-          distribution: "temurin"
-          java-version: 21
+          java-version: '21'
+          distribution: 'temurin'
 
       - name: Make Gradle Wrapper Executable
         if: ${{ runner.os != 'Windows' }}
@@ -79,7 +80,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build
-        run: ./gradlew clean build -Pmod_version=${{inputs.mod_version}}
+        run: ./gradlew build -Pmod_version=${{inputs.mod_version}}
 
       - name: Publish NeoForge GitHub Release
         if: ${{ inputs.publish_github_release == true }}

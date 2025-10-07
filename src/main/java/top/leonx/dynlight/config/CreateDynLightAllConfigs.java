@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 
+@SuppressWarnings("removal")
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class CreateDynLightAllConfigs {
 
